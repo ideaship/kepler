@@ -98,7 +98,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $watt_per_second_to_kWh \n) * $coal",
+          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $joule_to_kWh \n) * $coal",
           "hide": false,
           "legendFormat": "CO2 Coal",
           "range": true,
@@ -110,7 +110,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $watt_per_second_to_kWh \n) * $petroleum",
+          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $joule_to_kWh \n) * $petroleum",
           "hide": false,
           "legendFormat": "CO2 Petroleum",
           "range": true,
@@ -122,14 +122,14 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $watt_per_second_to_kWh \n) * $natural_gas",
+          "expr": "( sum(\n      increase(\n         (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n      )\n   ) * $joule_to_kWh \n) * $natural_gas",
           "hide": false,
           "legendFormat": "CO2 Natural Gas",
           "range": true,
           "refId": "C"
         }
       ],
-      "title": "Carbon Footprint (pounds per kWh per day) in Namespace: $namespace  (PKG+DRAM+OTHER+GPU)",
+      "title": "Carbon Footprint (pounds per day) in Namespace: $namespace  (PKG+DRAM+OTHER+GPU)",
       "transparent": true,
       "type": "gauge"
     },
@@ -680,7 +680,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum (\n  increase(\n   (kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $watt_per_second_to_kWh",
+          "expr": "sum (\n  increase(\n   (kepler_container_package_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $joule_to_kWh",
           "hide": false,
           "interval": "",
           "legendFormat": "PKG (CORE+UNCORE)",
@@ -693,7 +693,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum (\n  increase(\n   (kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $watt_per_second_to_kWh",
+          "expr": "sum (\n  increase(\n   (kepler_container_dram_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $joule_to_kWh",
           "hide": false,
           "interval": "",
           "legendFormat": "DRAM",
@@ -706,7 +706,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum (\n  increase(\n   (kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $watt_per_second_to_kWh",
+          "expr": "sum (\n  increase(\n   (kepler_container_other_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $joule_to_kWh",
           "hide": false,
           "legendFormat": "OTHER",
           "range": true,
@@ -718,7 +718,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum (\n  increase(\n   (kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $watt_per_second_to_kWh",
+          "expr": "sum (\n  increase(\n   (kepler_container_gpu_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $joule_to_kWh",
           "hide": false,
           "legendFormat": " GPU",
           "range": true,
@@ -782,7 +782,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (container_namespace) (\n  increase(\n      (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $watt_per_second_to_kWh ",
+          "expr": "sum by (container_namespace) (\n  increase(\n      (kepler_container_joules_total{container_namespace=~\"$namespace\", pod_name=~\"$pod\"}[24h:1m])\n  )\n) * $joule_to_kWh ",
           "interval": "",
           "legendFormat": "{{container_namespace}}",
           "range": true,
@@ -944,7 +944,7 @@
         "description": "1W*s = 1J and 1J = (1/3600000)kWh",
         "hide": 2,
         "label": "",
-        "name": "watt_per_second_to_kWh",
+        "name": "joule_to_kWh",
         "query": "0.000000277777777777778",
         "skipUrlSync": false,
         "type": "constant"
